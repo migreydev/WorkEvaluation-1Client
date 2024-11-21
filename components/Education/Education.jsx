@@ -1,3 +1,5 @@
+import "./Education.css";
+
 function Education() {
   const educationData = [
     {
