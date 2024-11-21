@@ -1,3 +1,5 @@
+import "./Education.css";
+
 function Education() {
   const educationData = [
     {
@@ -24,7 +26,7 @@ function Education() {
 
   return (
     <section id="education" className="education-section">
-      <h2>Educación</h2>
+      <h2>Education</h2>
       {/* Contenedor para la lista de elementos */}
       <div className="education-list">
         {/* Iteramos sobre los datos de educación con .map */}
