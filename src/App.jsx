@@ -5,6 +5,7 @@ import WorkExperience from "../components/WorkExperience/WorkExperience";
 import Skills from "../components/Skills/Skills";
 import ContactMe from "../components/ContactMe/ContactMe";
 import References from "../components/References/References";
+import Projects from "../components/Projects/Projects";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <AboutMe />
       <Education />
       <WorkExperience />
+      <Projects />
       <Skills />
       <References />
       <ContactMe />
