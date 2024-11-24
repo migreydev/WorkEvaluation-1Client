@@ -2,23 +2,44 @@ import "./Projects.css";
 import React, { useEffect, useState } from "react";
 
 const Projects = () => {
-  // Inicializamos el estado de los proyectos, la página actual y el número total de páginas
   const [projects, setProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(0); // Página inicial
   const [totalPages, setTotalPages] = useState(0); // Total de páginas
+  const [searchTerm, setSearchTerm] = useState(""); // Buscar palabra
+  const [errorMessage, setErrorMessage] = useState(""); // Mensaje de error para búsqueda
 
   // Función para cargar los proyectos
-  const fetchProjects = (page) => {
-    //Realizamos un fetch al siguiente endPoint
-    fetch(`http://localhost:8080/api/v1/projects?page=${page}`)
+  const fetchProjects = (page, word = "") => {
+    let endpoint;
+
+    if (word) {
+      endpoint = `http://localhost:8080/api/v1/projects/${word}`; // Búsqueda con palabra
+    } else {
+      endpoint = `http://localhost:8080/api/v1/projects?page=${page}`; // Carga de proyectos por página
+    }
+
+    fetch(endpoint)
       .then((response) => response.json())
       .then((data) => {
         setProjects(data.content); // Asignamos los proyectos de la página actual
         setTotalPages(data.totalPages); // Asignamos el total de páginas
+        setErrorMessage(""); // Limpiamos cualquier mensaje de error
       })
       .catch((error) => {
         console.error("Error al obtener los proyectos:", error);
+        setErrorMessage("Hubo un problema al cargar los proyectos.");
       });
+  };
+
+  // Función para manejar la búsqueda
+  const searchProjects = () => {
+    if (searchTerm) {
+      fetchProjects(0, searchTerm); // Realizamos la búsqueda
+      setCurrentPage(0); // Restablecemos a la primera página
+    } else {
+      setCurrentPage(0); // Restablecemos a la primera página
+      fetchProjects(currentPage); //Volvemos a cargar todos los proyectos
+    }
   };
 
   // useEffect para cargar los proyectos cuando el componente se ejecuta o cuando la página cambia
@@ -26,7 +47,7 @@ const Projects = () => {
     fetchProjects(currentPage);
   }, [currentPage]);
 
-  // Funciones para manejar la pagina
+  // Funciones para manejar la página
   const prevPage = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
@@ -42,21 +63,33 @@ const Projects = () => {
   return (
     <section id="projects" className="projects-section">
       <h2>My Projects</h2>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search projects..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button onClick={searchProjects} className="project-button">
+          Search
+        </button>
+      </div>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
+      {/* Mostrar mensaje de error */}
       <div className="projects-list">
         {projects.map((project) => (
-          <div key={project.id} className="project-card">
-            <img src={project.image} alt={project.title} />
-            <h3>{project.title}</h3>
+          <div key={project.project_id} className="project-card">
+            <h3>{project.project_name}</h3>
+            <img src={project.picture} alt={project.project_name} />
             <p>{project.description}</p>
             <div className="button-container">
-              <a href={project.link} className="project-button">
+              <a href={project.repository_url} className="project-button">
                 View Project
               </a>
             </div>
           </div>
         ))}
       </div>
-
       {/* Controles de paginación */}
       <div className="pagination-controls">
         <button onClick={prevPage} disabled={currentPage === 0}>
