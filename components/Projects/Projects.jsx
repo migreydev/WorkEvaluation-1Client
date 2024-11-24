@@ -1,5 +1,5 @@
 import "./Projects.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
