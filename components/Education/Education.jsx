@@ -1,28 +1,21 @@
+import { useState, useEffect } from "react";
 import "./Education.css";
 
 function Education() {
-  const educationData = [
-    {
-      institution: "Universidad Sevilla",
-      degree: "Grado en Geografía y Ordenación del Territorio",
-      details:
-        "Enfocado en desarrollo geográfico, Sistemas de Información Geográfica y bases de datos.",
-      image: "../../assets/images/Emblema_Universidad_de_Sevilla.png",
-    },
-    {
-      institution: "Universidad de Sevilla",
-      degree:
-        "Máster en Sistemas de Información Geográfica y Planificación Urbana",
-      details: "Especialización en SIG y planificacion de ordenación urbana.",
-      image: "../../assets/images/Emblema_Universidad_de_Sevilla.png",
-    },
-    {
-      institution: "Sta Joaquina de Vedruna",
-      degree: "Grado Superior Desarrollo de Aplicación Web",
-      details: "Especialización en programación y desarrollo web.",
-      image: "../../assets/images/LOGO-NUEVO-FOP-2023.png",
-    },
-  ];
+  // Declara el estado education que almacenará los datos de la educación
+  const [education, setEducation] = useState([]);
+
+  // useEffect para cargar los datos cuando el componente se ejecute
+  useEffect(() => {
+    //Realiza una petición fetch al endPoint
+    fetch("/data/education.json")
+      //Parseas la respuesta a JSON
+      .then((response) => response.json())
+      //Cuando se hayan almacenado los datos se setean al setEducation
+      .then((data) => setEducation(data))
+      //Manejo de error
+      .catch((error) => console.error("Error loading education:", error));
+  });
 
   return (
     <section id="education" className="education-section">
@@ -30,7 +23,7 @@ function Education() {
       {/* Contenedor para la lista de elementos */}
       <div className="education-list">
         {/* Iteramos sobre los datos de educación con .map */}
-        {educationData.map((educacion, i) => (
+        {education.map((educacion, i) => (
           // Cada elemento tiene una clase 'education-item' y una clave única basada en el índice
           <div key={i} className="education-item">
             <img src={educacion.image} alt={educacion.institution} />

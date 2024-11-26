@@ -14,7 +14,7 @@ function WorkExperience() {
       //Cuando se obtiene lo datos se lo seteamos al estado setWorkExperience
       .then((data) => setWorkExperience(data))
       //Manejo de error
-      .catch((error) => console.error("Error loading references:", error));
+      .catch((error) => console.error("Error loading work experience:", error));
   });
 
   return (
