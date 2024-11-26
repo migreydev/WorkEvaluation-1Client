@@ -1,31 +1,27 @@
+import { useState, useEffect } from "react";
 import "./References.css";
 
 function References() {
-  const references = [
-    {
-      name: "Ana Belén",
-      position: "Senior Developer",
-      comment:
-        "Miguel Ángel is an outstanding team player and problem solver. Highly recommended!",
-    },
-    {
-      name: "Juan Reyes",
-      position: "Project Manager",
-      comment:
-        "Miguel consistently delivered high-quality work under tight deadlines.",
-    },
-    {
-      name: "Cristina Reyes",
-      position: "Software Engineer",
-      comment:
-        "Working with Miguel was a pleasure; his skills and dedication are exceptional.",
-    },
-  ];
+  // Declara el estado references que almacenará los datos de las referencias
+  const [references, setReferences] = useState([]);
+
+  // useEffect para cargar los datos cuando el componente se ejecute
+  useEffect(() => {
+    // Se realiza la solicitud 'fetch' para obtener el archivo JSON
+    fetch("/data/references.json")
+      //La respuesta se convierte en formato JSON
+      .then((response) => response.json())
+      // Cuando los datos se obtienen correctamente, se actualiza el estado
+      .then((data) => setReferences(data))
+      //Capturar error
+      .catch((error) => console.error("Error loading references:", error));
+  }, []);
 
   return (
     <section id="references" className="references section-container">
       <h2>References</h2>
       <div className="references-list">
+        {/* Mapeamos el array references para crear una referencia para cada elemento del array */}
         {references.map((ref, index) => (
           <div key={index} className="reference-item">
             <h3>{ref.name}</h3>
