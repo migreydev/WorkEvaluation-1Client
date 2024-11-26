@@ -1,32 +1,28 @@
+import { useState, useEffect } from "react";
 import "./WorkExperience.css";
 
 function WorkExperience() {
-  const WorkExperienceData = [
-    {
-      position: "Técnico de Proyectos",
-      company: "U-Space",
-      period: "04/2021 - 06/2021",
-      location: "Sevilla",
-      details:
-        "Participation in projects focused on geographical analysis and technological solutions applied to urban planning.",
-    },
-    {
-      position:
-        "Prácticas del Máster en Tecnologías de la Información Geográfica",
-      company: "Agencia de Medio Ambiente y Agua de Andalucía (AMAYA)",
-      period: "10/2019 - 02/2020",
-      location: "Sevilla",
-      details:
-        "Support in the GIS line and development of REDIAM, including spatial data management and creation of interactive maps.",
-    },
-  ];
+  // Declara el estado workExperience que almacenará los datos de las experiencias laborales
+  const [workExperience, setWorkExperience] = useState([]);
+
+  // useEffect para cargar los datos cuando el componente se ejecute
+  useEffect(() => {
+    //Realiza una peticion fetch al archivo JSON
+    fetch("/data/workExperience.json")
+      //Convierte los datos en un JSO
+      .then((response) => response.json())
+      //Cuando se obtiene lo datos se lo seteamos al estado setWorkExperience
+      .then((data) => setWorkExperience(data))
+      //Manejo de error
+      .catch((error) => console.error("Error loading references:", error));
+  });
 
   return (
     <section id="workExperience" className="work-experience-timeline">
       <h2>Work Experience</h2>
       <div className="timeline">
         {/* Mapeo de los datos de experiencia laboral */}
-        {WorkExperienceData.map((work, index) => (
+        {workExperience.map((work, index) => (
           // Cada elemento de la línea de tiempo
           <div key={index} className="timeline-item">
             {/* Punto que representa la experiencia en la línea de tiempo */}
