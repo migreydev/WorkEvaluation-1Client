@@ -16,30 +16,24 @@ const Projects = () => {
         <h3>{project.project_name}</h3>
         <img src={project.picture} alt={project.project_name} />
         <p>{project.description}</p>
-        {/* Se muestran el status del proyecto */}
         <p>
-          <b>Status:</b>
-          {project.status.status_name}
+          <b>Status:</b> {project.status.status_name}
         </p>
         <p>
-          {/* Se muestran los desarrolladores solo si están asociados al proyecto */}
-          <b>Developer:</b>
-          {project.developersHasProjectsDTO.length === 0 && "No developers"}
-          {project.developersHasProjectsDTO.length > 0 &&
-            project.developersHasProjectsDTO
-              .map((developer) => developer.dev_name)
-              .join(", ")}
+          <b>Developer:</b>{" "}
+          {project.developersHasProjectsDTO.length > 0
+            ? project.developersHasProjectsDTO
+                .map((developer) => developer.dev_name)
+                .join(", ")
+            : "No developers"}
         </p>
         <div className="button-container">
           <a href={project.repository_url} className="project-button">
             View Project
           </a>
-          {/* Si test es true, muestra el botón de borrado */}
           {test && (
             <button
-              onClick={() =>
-                onDelete(project.developersHasProjectsDTO[0].dev_id)
-              }
+              onClick={() => onDelete(project.project_id)}
               className="delete-button"
             >
               Delete
@@ -106,23 +100,21 @@ const Projects = () => {
     }
   };
 
-  // Función para eliminar un developer
-  const deleteDeveloper = (developerId) => {
-    fetch(`http://localhost:8080/api/v1/developers/${developerId}`, {
+  // Función para eliminar un proyecto
+  const deleteProject = (projectId) => {
+    fetch(`http://localhost:8080/api/v1/projects/${projectId}`, {
       method: "DELETE",
     })
       .then((response) => {
         if (response.ok) {
-          // Recargar proyectos tras eliminar
-          fetchProjects(currentPage);
+          fetchProjects(currentPage); // Recargar los proyectos actuales
         } else {
-          throw new Error("Failed to remove developer");
+          throw new Error("Failed to remove project");
         }
       })
       .catch((error) => {
-        console.log(developerId);
-        console.error("Error deleting the developer:", error);
-        setErrorMessage("There was a problem deleting the developer.");
+        console.error("Error deleting the project:", error);
+        setErrorMessage("There was a problem deleting the project.");
       });
   };
 
@@ -165,8 +157,8 @@ const Projects = () => {
           <ProjectCard
             key={project.project_id}
             project={project}
-            test={project.developersHasProjectsDTO.length > 0} // Mostrar botón si hay developers
-            onDelete={deleteDeveloper} // Pasamos la función de borrado
+            test={true}
+            onDelete={deleteProject} // Pasamos la función de borrado
           />
         ))}
       </div>
