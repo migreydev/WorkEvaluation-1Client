@@ -56,6 +56,7 @@
 .project-card .button-container {
   display: flex;
   justify-content: center;
+  gap: 20px;
 }
 
 .project-card .project-button {
@@ -136,4 +137,29 @@
 
 .search-container button:hover {
   transform: scale(1.1);
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.delete-button:active {
+  background-color: #c62828;
+}
+
+.delete-button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
 }
