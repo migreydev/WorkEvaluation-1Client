@@ -27,8 +27,8 @@
 /* Foto */
 .about-me-photo {
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border: 3px solid #ffd500e2;
   margin-bottom: 20px;
@@ -46,6 +46,6 @@
 }
 
 .about-me-info p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.8;
 }

@@ -1,6 +1,43 @@
 import "./Skills.css";
+import { useState, useEffect } from "react";
 
 function Skills() {
+  const [projects, setProjects] = useState([]); // Lista de proyectos
+  const [selectedTech, setSelectedTech] = useState(""); // Tecnología seleccionada
+  const [message, setMessage] = useState(""); // Mensaje de estado
+
+  // Función para obtener proyectos según la tecnología seleccionada
+  const fetchProjectsByTech = (tech) => {
+    fetch(`http://localhost:8080/api/v1/projects/tec/${tech}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setProjects(data); // Actualiza la lista de proyectos con los datos recibidos
+          setMessage("");
+        } else {
+          setProjects([]); // Si no hay proyectos, actualiza con un array vacío
+          setMessage("No projects available for the selected technology.");
+        }
+      })
+      .catch((error) => {
+        setProjects([]); // Si hay un error, actualiza con un array vacío
+        setMessage("Error fetching projects, please try again later.", error);
+      });
+  };
+
+  // Manejar el cambio de tecnología seleccionada
+  const handleTechChange = (tech) => {
+    setSelectedTech(tech); // Actualiza el estado de tecnología seleccionada
+    fetchProjectsByTech(tech); // Hace la petición al endpoint
+  };
+
+  // Si necesitas actualizar los proyectos cuando el componente se ejecuta
+  useEffect(() => {
+    if (selectedTech) {
+      fetchProjectsByTech(selectedTech);
+    }
+  }, [selectedTech]);
+
   return (
     <section id="skills" className="skills section-container">
       <h2 className="skills-title">Abilities and Skills</h2>
@@ -22,6 +59,7 @@ function Skills() {
               width="100"
               height="100"
               viewBox="0 0 48 48"
+              onClick={() => handleTechChange("Node")}
             >
               <path
                 fill="#388e3c"
@@ -50,6 +88,7 @@ function Skills() {
               width="2500"
               height="2500"
               viewBox="0 0 1052 1052"
+              onClick={() => handleTechChange("JS")}
             >
               <path fill="#f0db4f" d="M0 0h1052v1052H0z" />
               <path
@@ -63,6 +102,7 @@ function Skills() {
               height="256"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid"
+              onClick={() => handleTechChange("TS")}
             >
               <path
                 d="M20 0h216c11.046 0 20 8.954 20 20v216c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V20C0 8.954 8.954 0 20 0Z"
@@ -73,7 +113,11 @@ function Skills() {
                 fill="#FFF"
               />
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452 520">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 452 520"
+              onClick={() => handleTechChange("HTML")}
+            >
               <path fill="#e34f26" d="M41 460L0 0h451l-41 460-185 52" />
               <path fill="#ef652a" d="M226 472l149-41 35-394H226" />
               <path
@@ -91,6 +135,7 @@ function Skills() {
               viewBox="0 0 54 80"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              onClick={() => handleTechChange("Figma")}
             >
               <g clipPath="url(#clip0_912_3)">
                 <path
@@ -120,7 +165,11 @@ function Skills() {
                 </clipPath>
               </defs>
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452 520">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 452 520"
+              onClick={() => handleTechChange("CSS")}
+            >
               <path fill="#0c73b8" d="M41 460L0 0h451l-41 460-185 52" />
               <path fill="#30a9dc" d="M226 472l149-41 35-394H226" />
               <path
@@ -137,6 +186,7 @@ function Skills() {
               xmlns="http://www.w3.org/2000/svg"
               width="64"
               height="64"
+              onClick={() => handleTechChange("Spring Boot")}
             >
               <path
                 d="M58.2 3.365a29.503 29.503 0 0 1-3.419 6.064A32.094 32.094 0 1 0 9.965 55.372l1.186 1.047a32.08 32.08 0 0 0 52.67-22.253c.875-8.17-1.524-18.51-5.62-30.8zM14.53 55.558a2.744 2.744 0 1 1-.404-3.857 2.744 2.744 0 0 1 .404 3.857zm43.538-9.61c-7.92 10.55-24.83 6.99-35.672 7.502 0 0-1.922.113-3.857.43 0 0 .73-.31 1.663-.663 7.614-2.65 11.213-3.16 15.838-5.54 8.708-4.427 17.322-14.122 19.112-24.2-3.313 9.695-13.373 18.032-22.53 21.418-6.276 2.313-17.614 4.566-17.614 4.566l-.457-.245c-7.714-3.75-7.952-20.457 6.077-25.845 6.143-2.366 12.02-1.067 18.654-2.65 7.084-1.683 15.28-6.99 18.615-13.916 3.73 11.08 8.224 28.422.166 39.15z"
@@ -147,6 +197,7 @@ function Skills() {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 242 256"
+              onClick={() => handleTechChange("Angular")}
             >
               <g clipPath="url(#a)">
                 <mask
@@ -209,6 +260,7 @@ function Skills() {
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid"
               viewBox="0 0 256 346"
+              onClick={() => handleTechChange("java")}
             >
               <path
                 d="M83 267s-14 8 9 11c27 3 41 2 71-3 0 0 8 5 19 9-67 29-153-2-99-17M74 230s-15 11 8 13c29 3 52 3 92-4 0 0 6 5 15 8-82 24-173 2-115-17"
@@ -235,6 +287,7 @@ function Skills() {
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid"
               viewBox="0 0 256 252"
+              onClick={() => handleTechChange("mySql")}
             >
               <path
                 d="M236 194c-14 0-25 1-34 5-3 1-7 1-7 4l3 6c2 3 5 8 9 11l11 8 21 10 11 9 6 4-3-6-5-5c-5-7-11-13-18-18-6-3-18-9-20-15h-1l12-3 18-3 8-2v-2l-9-10c-8-8-18-15-28-22l-18-8c-2-1-6-2-7-4l-7-13-15-30-8-20c-18-30-38-48-68-65-6-4-14-5-22-7l-13-1-8-6C34 5 8-9 1 9c-5 11 7 22 11 28l9 13 3 9c3 8 5 17 9 24l6 10c2 2 4 3 5 6-3 4-3 9-4 13-7 20-4 44 5 59 2 4 9 14 18 10 8-3 6-13 8-22l1-4 8 14c5 9 14 18 22 24 4 3 8 8 13 10l-4-4-9-10c-8-10-14-21-20-32l-7-17-3-6c-3 4-7 7-9 12-3 7-3 17-4 26h-1c-6-1-8-7-10-12-5-12-6-32-1-46 1-4 6-15 4-19-1-3-4-5-6-7l-7-12-10-30-9-13c-3-5-7-8-10-14-1-2-2-5 0-7l2-2c2-2 9 0 11 1 6 3 12 5 17 9l8 6h4c6 1 12 0 17 2 9 3 18 7 25 12 23 14 42 35 54 59 3 4 3 8 5 12l12 26c4 8 7 16 12 23 3 4 14 6 18 8l12 4 18 12c2 2 11 7 12 10Z"
@@ -252,6 +305,7 @@ function Skills() {
                 width="256"
                 height="204"
                 preserveAspectRatio="xMidYMid"
+                onClick={() => handleTechChange("Bootstrap")}
               >
                 <path
                   fill="#7E13F8"
@@ -265,6 +319,7 @@ function Skills() {
                 width="100"
                 height="100"
                 viewBox="0 0 48 48"
+                onClick={() => handleTechChange("Python")}
               >
                 <path
                   fill="#0277BD"
@@ -281,6 +336,7 @@ function Skills() {
                 width="256"
                 height="549"
                 preserveAspectRatio="xMidYMid"
+                onClick={() => handleTechChange("Mongo")}
               >
                 <path
                   fill="#01EC64"
@@ -291,6 +347,7 @@ function Skills() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 id="react"
+                onClick={() => handleTechChange("React")}
               >
                 <circle cx="12" cy="11.999" r="2.147" fill="#53C1DE"></circle>
                 <path
@@ -302,6 +359,7 @@ function Skills() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 128 128"
                 id="oracle"
+                onClick={() => handleTechChange("Oracle")}
               >
                 <path
                   fill="#EA1B22"
@@ -314,6 +372,7 @@ function Skills() {
                 height="48"
                 viewBox="0 0 48 48"
                 id="json"
+                onClick={() => handleTechChange("Json")}
               >
                 <path
                   fill="#FBC02D"
@@ -324,6 +383,7 @@ function Skills() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 128 128"
                 id="git"
+                onClick={() => handleTechChange("Git")}
               >
                 <path
                   fill="#F34F29"
@@ -333,6 +393,24 @@ function Skills() {
             </div>
             <div className="logos-container"></div>
           </div>
+        </div>
+        {/* Mostrar mensaje de estado si no hay proyectos */}
+        {message && <p className="no-projects-message">{message}</p>}
+        <div className="projects-list">
+          {
+            projects.length > 0
+              ? projects.map((project) => (
+                  <div key={project.project_id} className="project-card">
+                    <h3>{project.project_name}</h3>
+                    <p>{project.description}</p>
+                    <p>
+                      <b>Techonology: {selectedTech}</b>
+                    </p>
+                    <a href={project.repository_url}>View Project</a>
+                  </div>
+                ))
+              : !message && <p>Select one of the skills...</p> // Mensaje mientras se cargan los proyectos
+          }
         </div>
       </div>
     </section>

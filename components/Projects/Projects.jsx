@@ -34,7 +34,7 @@ const Projects = () => {
           {test && (
             <button
               onClick={() => onDelete(project.project_id)}
-              className="delete-button"
+              className="project-button delete"
             >
               Delete
             </button>

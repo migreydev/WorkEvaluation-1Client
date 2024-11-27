@@ -31,7 +31,6 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .project-card img {
@@ -44,13 +43,14 @@
 .project-card h3 {
   font-size: 1.5rem;
   color: #444;
-  margin: 0;
+  margin: 5px 0;
 }
 
 .project-card p {
   font-size: 1rem;
   color: #777;
-  line-height: 1.5;
+  line-height: 1.4;
+  margin: 5px 0;
 }
 
 .project-card .button-container {
@@ -62,7 +62,7 @@
 .project-card .project-button {
   padding: 10px 20px;
   font-size: 1.1rem;
-  background-color: rgba(215, 181, 29, 0.549);
+  background-color: #ffd500b3;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 4px;
@@ -87,7 +87,7 @@
 .pagination-controls button {
   padding: 10px 20px;
   font-size: 1.1rem;
-  background-color: rgba(215, 181, 29, 0.549);
+  background-color: #ffd500b3;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 4px;
@@ -127,7 +127,7 @@
 .search-container button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: rgba(215, 181, 29, 0.549);
+  background-color: #ffd500b3;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 4px;
@@ -139,27 +139,11 @@
   transform: scale(1.1);
 }
 
-.delete-button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+.project-button.delete {
+  background-color: #da5248;
+  color: #000000;
 }
 
-.delete-button:hover {
-  background-color: #d32f2f;
-}
-
-.delete-button:active {
-  background-color: #c62828;
-}
-
-.delete-button:disabled {
-  background-color: #e0e0e0;
-  cursor: not-allowed;
+.project-button.delete:hover {
+  background-color: #be1717;
 }
