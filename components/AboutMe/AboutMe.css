@@ -1,0 +1,51 @@
+/* Estilo de la sección */
+.about-me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+  font-family: "Roboto Mono", monospace;
+  margin-bottom: 40px;
+}
+
+.about-me-container {
+  background-color: rgba(253, 253, 251, 0.765);
+  border-radius: 10px;
+  border: 2px solid #ffd500e2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 1000px;
+  padding: 20px;
+}
+
+/* Foto */
+.about-me-photo {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 3px solid #ffd500e2;
+  margin-bottom: 20px;
+}
+
+/* Estilo de la información */
+.about-me-info h2 {
+  font-size: 2.5rem;
+  margin: 0 0 10px;
+}
+
+.about-me-info h3 {
+  font-size: 1.3rem;
+  margin: 5px 0;
+}
+
+.about-me-info p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
