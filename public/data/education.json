@@ -3,18 +3,18 @@
     "institution": "Universidad Sevilla",
     "degree": "Grado en Geografía y Ordenación del Territorio",
     "details": "Enfocado en desarrollo geográfico, Sistemas de Información Geográfica y bases de datos.",
-    "image": "../../assets/images/Emblema_Universidad_de_Sevilla.png"
+    "image": "../../src/assets/images/Emblema_Universidad_de_Sevilla.png"
   },
   {
     "institution": "Universidad de Sevilla",
     "degree": "Máster en Sistemas de Información Geográfica y Planificación Urbana",
     "details": "Especialización en SIG y planificación de ordenación urbana.",
-    "image": "../../assets/images/Emblema_Universidad_de_Sevilla.png"
+    "image": "../../src/assets/images/Emblema_Universidad_de_Sevilla.png"
   },
   {
     "institution": "Sta Joaquina de Vedruna",
     "degree": "Grado Superior Desarrollo de Aplicación Web",
     "details": "Especialización en programación y desarrollo web.",
-    "image": "../../assets/images/LOGO-NUEVO-FOP-2023.png"
+    "image": "../../src/assets/images/LOGO-NUEVO-FOP-2023.png"
   }
 ]
