@@ -22,3 +22,60 @@ h3 {
   margin: 40px auto;
   max-width: 1200px;
 }
+
+/* Media Query para pantallas pequeñas (por ejemplo, móviles) */
+@media (max-width: 768px) {
+  body {
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.8
+    ); /* Cambia el color de fondo en pantallas pequeñas */
+  }
+
+  .section-container {
+    padding: 8px; /* Reduce más el padding */
+    margin: 15px auto; /* Reduce aún más los márgenes */
+    max-width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 1.3em; /* Reduce más el tamaño de las fuentes */
+    margin-bottom: 10px; /* Añade un pequeño margen inferior */
+  }
+
+  /* Ajustes adicionales */
+  p {
+    font-size: 0.9em; /* Reduce el tamaño del texto en párrafos */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  .section-container {
+    padding: 5px;
+    margin: 5px auto;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 0.8em;
+  }
+
+  .button {
+    font-size: 0.9em;
+    padding: 10px 15px;
+  }
+}

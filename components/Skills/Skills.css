@@ -90,3 +90,52 @@ svg:hover {
   text-align: left;
   transition: transform 0.3s ease;
 }
+
+@media (max-width: 768px) {
+  .skills-container {
+    width: 95%; /* Asegura que ocupe un poco más del 90% del ancho */
+    margin: 0 10px; /* Márgenes laterales para pantallas medianas */
+  }
+
+  .skills-title {
+    font-size: 2rem;
+  }
+
+  .logos-container svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .projects-list {
+    gap: 15px; /* Reduce el espacio entre las tarjetas */
+  }
+
+  .project-card {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-container {
+    width: 100%;
+    margin: 0 10px;
+  }
+
+  .skills-title {
+    font-size: 1.8rem;
+  }
+
+  .logos-container svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .projects-list {
+    gap: 10px;
+  }
+
+  .project-card {
+    max-width: 100%;
+    margin: 10px 0;
+  }
+}

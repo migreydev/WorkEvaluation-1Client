@@ -44,3 +44,36 @@
 .navbar a.active {
   background-color: rgba(180, 178, 164, 0.666);
 }
+
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    flex-direction: column;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .navbar-hamburger {
+    display: flex;
+  }
+
+  .navbar-links a {
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo {
+    font-size: 1.2rem;
+  }
+
+  .navbar-links a {
+    font-size: 1rem;
+  }
+}
