@@ -74,35 +74,54 @@ Este proyecto frontend ha sido desarrollado utilizando React y está diseñado c
 
 ## Guía de Instalación
 
-A continuación se detallan los pasos para instalar y ejecutar el proyecto en tu entorno local:
+A continuación se detallan los pasos para crear, instalar y ejecutar el proyecto en tu entorno local:
 
-1. **Clonar el repositorio**:
+1. **Crear el proyecto React con Vite**:
 
-   - Abre la terminal y ejecuta el siguiente comando para clonar el repositorio:
+   - Abre la terminal y ejecuta el siguiente comando para crear un nuevo proyecto utilizando Vite:
      ```bash
-     git clone https://github.com/tu-usuario/portfolio-react.git
+     npm create vite@latest nombreProyecto
+     ```
+   - Selecciona la opción **React** y luego elige **JavaScript**, para tu proyecto.
+
+   - Una vez creado el proyecto, navega a la carpeta recién generada:
+
+     ```bash
+     cd nombreProyecto
      ```
 
-2. **Instalar dependencias**:
-
-   - Navega a la carpeta del proyecto:
-     ```bash
-     cd portfolio-react
-     ```
-   - Ejecuta el siguiente comando para instalar las dependencias necesarias:
+   - Instala las dependencias iniciales ejecutando:
      ```bash
      npm install
      ```
 
-3. **Ejecutar el proyecto**:
+2. **Clonar el repositorio**:
 
-   - Para iniciar la aplicación en modo desarrollo, ejecuta:
+   - Si ya tienes un proyecto existente en GitHub, clona el repositorio. De lo contrario, asegúrate de sincronizar el proyecto creado con un repositorio remoto:
+
      ```bash
-     npm start
+     git clone https://github.com/migreydev/WorkEvaluation-1Client
+     ```
+
+   - Accede al directorio clonado o asegúrate de que tu nuevo proyecto esté configurado en esta carpeta.
+
+3. **Instalar dependencias adicionales**:
+
+   - Si tu proyecto tiene dependencias específicas, instálalas ejecutando:
+     ```bash
+     npm install
+     ```
+
+4. **Ejecutar el proyecto**:
+
+   - Inicia la aplicación en modo desarrollo con:
+     ```bash
+     npm run dev
      ```
    - La aplicación estará disponible en `http://localhost:5173/`.
 
-4. **Estructura de archivos**:
+5. **Estructura de archivos**:
+
    - Los archivos JSON se encuentran en la carpeta `public/data/`. Por ejemplo:
      - `public/data/references.json`
      - `public/data/education.json`
