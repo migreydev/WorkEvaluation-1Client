@@ -9,6 +9,9 @@ const Projects = () => {
   const [searchTerm, setSearchTerm] = useState(""); // Buscar palabra
   const [errorMessage, setErrorMessage] = useState(""); // Mensaje de error para búsqueda
 
+  // Variable para modo de prueba
+  const testMode = true; // Cambiar a false en producción
+
   // Componente reutilizable para mostrar una tarjeta de proyecto
   const ProjectCard = ({ project, test = false, onDelete }) => {
     return (
@@ -157,7 +160,7 @@ const Projects = () => {
           <ProjectCard
             key={project.project_id}
             project={project}
-            test={true}
+            test={testMode}
             onDelete={deleteProject} // Pasamos la función de borrado
           />
         ))}
